@@ -22,4 +22,32 @@ jobs:
           python-version: '3.x'
 
       - name: Run tests
-        run: python app/test.py
+        id: test-results
+        run: |
+          python app/test.py
+
+      - name: Check test results
+        if: failure()
+        run: |
+          # Extract commit hash
+          COMMIT_HASH=$(git rev-parse HEAD)
+
+          # Reset 'dev' branch to previous commit
+          git reset --hard HEAD~1
+          git push --force
+
+          # Create a unique failure branch
+          UNIQUE_ID=$(date +%s)
+          FAILURE_BRANCH="failures/$UNIQUE_ID"
+          git checkout -b $FAILURE_BRANCH $COMMIT_HASH
+          git push origin $FAILURE_BRANCH
+
+      - name: Merge to main
+        if: success()
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout main
+          git merge --ff-only dev
+          git push origin main
+          
