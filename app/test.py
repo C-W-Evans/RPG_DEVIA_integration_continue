@@ -46,7 +46,7 @@ class Tests(unittest.TestCase):
             personnage.recevoir_degats(Personnage())
         self.assertTrue(personnage.est_mort())
 
-def test_hp_after_healing(self):
+    def test_hp_after_healing(self):
         personnage = Personnage()
         personnage.recevoir_degats(Personnage())
         personnage.recevoir_soins(1)
