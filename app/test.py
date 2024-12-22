@@ -8,6 +8,15 @@ class Tests(unittest.TestCase):
     def test_hp_equals_10(self):
         personnage = Personnage()
         self.assertEqual(personnage.hp(), 10)
+        
+
+    # # Tests pour feature recevoir_degats
+
+    def test_attaquant_enleve_1hp(self):
+        attaquant = Personnage()
+        defenseur = Personnage()
+        defenseur.recevoir_degats(attaquant)
+        self.assertEqual(defenseur.hp(), 9)
 
 if __name__ == "__main__":
     unittest.main()
