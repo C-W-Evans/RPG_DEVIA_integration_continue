@@ -7,3 +7,6 @@ class Personnage:
     
     def recevoir_degats(self, attaquantS):
         self.__hp -= 1
+
+    def est_mort(self):
+        return self.__hp <= 0
