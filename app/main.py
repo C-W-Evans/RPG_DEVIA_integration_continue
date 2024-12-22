@@ -10,3 +10,6 @@ class Personnage:
 
     def est_mort(self):
         return self.__hp <= 0
+    
+    def recevoir_soins(self, soins):
+        self.__hp = min(self.__hp + soins, 10)
