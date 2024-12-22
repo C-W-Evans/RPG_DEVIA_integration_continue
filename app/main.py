@@ -5,3 +5,5 @@ class Personnage:
     def hp(self):
         return self.__hp
     
+    def recevoir_degats(self, attaquantS):
+        self.__hp -= 1
