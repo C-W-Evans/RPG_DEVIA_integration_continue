@@ -45,7 +45,7 @@ class Tests(unittest.TestCase):
         for _ in range(15):
             personnage.recevoir_degats(Personnage())
         self.assertTrue(personnage.est_mort())
-
+        
 
     ## Test feature recevoir_soins
 
@@ -75,8 +75,6 @@ class Tests(unittest.TestCase):
         for _ in range(15):
             personnage.recevoir_soins(1)
         self.assertEqual(personnage.hp(), 10)
-
-    
 
 if __name__ == "__main__":
     unittest.main()
