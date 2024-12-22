@@ -46,5 +46,37 @@ class Tests(unittest.TestCase):
             personnage.recevoir_degats(Personnage())
         self.assertTrue(personnage.est_mort())
 
+
+    ## Test feature recevoir_soins
+
+    def test_hp_after_healing(self):
+        personnage = Personnage()
+        personnage.recevoir_degats(Personnage())
+        personnage.recevoir_soins(1)
+        self.assertEqual(personnage.hp(), 10)
+
+    def test_hp_after_multiple_healings(self):
+        personnage = Personnage()
+        personnage.recevoir_degats(Personnage())
+        personnage.recevoir_degats(Personnage())
+        personnage.recevoir_soins(1)
+        personnage.recevoir_soins(1)
+        self.assertEqual(personnage.hp(), 10)
+
+    def test_hp_after_healing_and_damage(self):
+        personnage = Personnage()
+        personnage.recevoir_degats(Personnage())
+        personnage.recevoir_soins(1)
+        personnage.recevoir_degats(Personnage())
+        self.assertEqual(personnage.hp(), 9)
+
+    def test_hp_never_exceeds_max(self):
+        personnage = Personnage()
+        for _ in range(15):
+            personnage.recevoir_soins(1)
+        self.assertEqual(personnage.hp(), 10)
+
+    
+
 if __name__ == "__main__":
     unittest.main()
