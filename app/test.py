@@ -56,25 +56,25 @@ class Tests(unittest.TestCase):
         self.assertEqual(personnage.hp(), 10)
 
     def test_hp_after_multiple_healings(self):
-        personnage = personnage()
-        personnage.recevoir_degats(personnage())
-        personnage.recevoir_degats(personnage())
+        personnage = Personnage()
+        personnage.recevoir_degats(Personnage())
+        personnage.recevoir_degats(Personnage())
         personnage.recevoir_soins(1)
         personnage.recevoir_soins(1)
-        self.assertequal(personnage.hp(), 10)
+        self.assertEqual(personnage.hp(), 10)
 
     def test_hp_after_healing_and_damage(self):
-        personnage = personnage()
-        personnage.recevoir_degats(personnage())
+        personnage = Personnage()
+        personnage.recevoir_degats(Personnage())
         personnage.recevoir_soins(1)
-        personnage.recevoir_degats(personnage())
-        self.assertequal(personnage.hp(), 9)
+        personnage.recevoir_degats(Personnage())
+        self.assertEqual(personnage.hp(), 9)
 
     def test_hp_never_exceeds_max(self):
-        personnage = personnage()
+        personnage = Personnage()
         for _ in range(15):
             personnage.recevoir_soins(1)
-        self.assertlessequal(personnage.hp(), 10)
+        self.assertEqual(personnage.hp(), 10)
 
     
 
